@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditOrderInvoiceTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditOrderInvoiceLabel_invoiceId}" for="invoiceId" />
+                    <h:inputText id="invoiceId" value="#{orderInvoiceController.selected.invoiceId}" title="#{bundle.EditOrderInvoiceTitle_invoiceId}" required="true" requiredMessage="#{bundle.EditOrderInvoiceRequiredMessage_invoiceId}"/>
+                    <h:outputLabel value="#{bundle.EditOrderInvoiceLabel_quantity}" for="quantity" />
+                    <h:inputText id="quantity" value="#{orderInvoiceController.selected.quantity}" title="#{bundle.EditOrderInvoiceTitle_quantity}" />
+                    <h:outputLabel value="#{bundle.EditOrderInvoiceLabel_discountCode}" for="discountCode" />
+                    <h:selectOneMenu id="discountCode" value="#{orderInvoiceController.selected.discountCode}" title="#{bundle.EditOrderInvoiceTitle_discountCode}" >
+                        <f:selectItems value="#{discountController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditOrderInvoiceLabel_orderId}" for="orderId" />
+                    <h:selectOneMenu id="orderId" value="#{orderInvoiceController.selected.orderId}" title="#{bundle.EditOrderInvoiceTitle_orderId}" required="true" requiredMessage="#{bundle.EditOrderInvoiceRequiredMessage_orderId}">
+                        <f:selectItems value="#{ordersController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.EditOrderInvoiceLabel_productId}" for="productId" />
+                    <h:selectOneMenu id="productId" value="#{orderInvoiceController.selected.productId}" title="#{bundle.EditOrderInvoiceTitle_productId}" required="true" requiredMessage="#{bundle.EditOrderInvoiceRequiredMessage_productId}">
+                        <f:selectItems value="#{productsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{orderInvoiceController.update}" value="#{bundle.EditOrderInvoiceSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditOrderInvoiceViewLink}"/>
+                <br />
+                <h:commandLink action="#{orderInvoiceController.prepareList}" value="#{bundle.EditOrderInvoiceShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditOrderInvoiceIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

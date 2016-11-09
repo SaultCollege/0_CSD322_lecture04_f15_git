@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateCustomersTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateCustomersLabel_customerId}" for="customerId" />
+                    <h:inputText id="customerId" value="#{customersController.selected.customerId}" title="#{bundle.CreateCustomersTitle_customerId}" required="true" requiredMessage="#{bundle.CreateCustomersRequiredMessage_customerId}"/>
+                    <h:outputLabel value="#{bundle.CreateCustomersLabel_customerFName}" for="customerFName" />
+                    <h:inputText id="customerFName" value="#{customersController.selected.customerFName}" title="#{bundle.CreateCustomersTitle_customerFName}" />
+                    <h:outputLabel value="#{bundle.CreateCustomersLabel_customerLName}" for="customerLName" />
+                    <h:inputText id="customerLName" value="#{customersController.selected.customerLName}" title="#{bundle.CreateCustomersTitle_customerLName}" />
+                    <h:outputLabel value="#{bundle.CreateCustomersLabel_customerAddress}" for="customerAddress" />
+                    <h:inputText id="customerAddress" value="#{customersController.selected.customerAddress}" title="#{bundle.CreateCustomersTitle_customerAddress}" />
+                    <h:outputLabel value="#{bundle.CreateCustomersLabel_customerCity}" for="customerCity" />
+                    <h:inputText id="customerCity" value="#{customersController.selected.customerCity}" title="#{bundle.CreateCustomersTitle_customerCity}" />
+                    <h:outputLabel value="#{bundle.CreateCustomersLabel_customerPC}" for="customerPC" />
+                    <h:inputText id="customerPC" value="#{customersController.selected.customerPC}" title="#{bundle.CreateCustomersTitle_customerPC}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{customersController.create}" value="#{bundle.CreateCustomersSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{customersController.prepareList}" value="#{bundle.CreateCustomersShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateCustomersIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

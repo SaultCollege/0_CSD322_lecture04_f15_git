@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewOrderInvoiceTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewOrderInvoiceLabel_invoiceId}"/>
+                    <h:outputText value="#{orderInvoiceController.selected.invoiceId}" title="#{bundle.ViewOrderInvoiceTitle_invoiceId}"/>
+                    <h:outputText value="#{bundle.ViewOrderInvoiceLabel_quantity}"/>
+                    <h:outputText value="#{orderInvoiceController.selected.quantity}" title="#{bundle.ViewOrderInvoiceTitle_quantity}"/>
+                    <h:outputText value="#{bundle.ViewOrderInvoiceLabel_discountCode}"/>
+                    <h:outputText value="#{orderInvoiceController.selected.discountCode}" title="#{bundle.ViewOrderInvoiceTitle_discountCode}"/>
+                    <h:outputText value="#{bundle.ViewOrderInvoiceLabel_orderId}"/>
+                    <h:outputText value="#{orderInvoiceController.selected.orderId}" title="#{bundle.ViewOrderInvoiceTitle_orderId}"/>
+                    <h:outputText value="#{bundle.ViewOrderInvoiceLabel_productId}"/>
+                    <h:outputText value="#{orderInvoiceController.selected.productId}" title="#{bundle.ViewOrderInvoiceTitle_productId}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{orderInvoiceController.destroyAndView}" value="#{bundle.ViewOrderInvoiceDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewOrderInvoiceEditLink}"/>
+                <br />
+                <h:commandLink action="#{orderInvoiceController.prepareCreate}" value="#{bundle.ViewOrderInvoiceCreateLink}" />
+                <br />
+                <h:commandLink action="#{orderInvoiceController.prepareList}" value="#{bundle.ViewOrderInvoiceShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewOrderInvoiceIndexLink}"/>
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

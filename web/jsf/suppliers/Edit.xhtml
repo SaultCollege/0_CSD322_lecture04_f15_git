@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditSuppliersTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditSuppliersLabel_supplierCode}" for="supplierCode" />
+                    <h:inputText id="supplierCode" value="#{suppliersController.selected.supplierCode}" title="#{bundle.EditSuppliersTitle_supplierCode}" required="true" requiredMessage="#{bundle.EditSuppliersRequiredMessage_supplierCode}"/>
+                    <h:outputLabel value="#{bundle.EditSuppliersLabel_supplierName}" for="supplierName" />
+                    <h:inputText id="supplierName" value="#{suppliersController.selected.supplierName}" title="#{bundle.EditSuppliersTitle_supplierName}" />
+                    <h:outputLabel value="#{bundle.EditSuppliersLabel_region}" for="region" />
+                    <h:selectOneMenu id="region" value="#{suppliersController.selected.region}" title="#{bundle.EditSuppliersTitle_region}" >
+                        <f:selectItems value="#{supplierRegionController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{suppliersController.update}" value="#{bundle.EditSuppliersSaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditSuppliersViewLink}"/>
+                <br />
+                <h:commandLink action="#{suppliersController.prepareList}" value="#{bundle.EditSuppliersShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditSuppliersIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

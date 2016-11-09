@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateProductsTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateProductsLabel_productId}" for="productId" />
+                    <h:inputText id="productId" value="#{productsController.selected.productId}" title="#{bundle.CreateProductsTitle_productId}" required="true" requiredMessage="#{bundle.CreateProductsRequiredMessage_productId}"/>
+                    <h:outputLabel value="#{bundle.CreateProductsLabel_productName}" for="productName" />
+                    <h:inputText id="productName" value="#{productsController.selected.productName}" title="#{bundle.CreateProductsTitle_productName}" />
+                    <h:outputLabel value="#{bundle.CreateProductsLabel_unitPrice}" for="unitPrice" />
+                    <h:inputText id="unitPrice" value="#{productsController.selected.unitPrice}" title="#{bundle.CreateProductsTitle_unitPrice}" />
+                    <h:outputLabel value="#{bundle.CreateProductsLabel_unitsOnHand}" for="unitsOnHand" />
+                    <h:inputText id="unitsOnHand" value="#{productsController.selected.unitsOnHand}" title="#{bundle.CreateProductsTitle_unitsOnHand}" />
+                    <h:outputLabel value="#{bundle.CreateProductsLabel_unitsOnReorder}" for="unitsOnReorder" />
+                    <h:inputText id="unitsOnReorder" value="#{productsController.selected.unitsOnReorder}" title="#{bundle.CreateProductsTitle_unitsOnReorder}" />
+                    <h:outputLabel value="#{bundle.CreateProductsLabel_reorderLvl}" for="reorderLvl" />
+                    <h:inputText id="reorderLvl" value="#{productsController.selected.reorderLvl}" title="#{bundle.CreateProductsTitle_reorderLvl}" />
+                    <h:outputLabel value="#{bundle.CreateProductsLabel_discontinuedStatus}" for="discontinuedStatus" />
+                    <h:inputText id="discontinuedStatus" value="#{productsController.selected.discontinuedStatus}" title="#{bundle.CreateProductsTitle_discontinuedStatus}" />
+                    <h:outputLabel value="#{bundle.CreateProductsLabel_productCategory}" for="productCategory" />
+                    <h:selectOneMenu id="productCategory" value="#{productsController.selected.productCategory}" title="#{bundle.CreateProductsTitle_productCategory}" required="true" requiredMessage="#{bundle.CreateProductsRequiredMessage_productCategory}">
+                        <f:selectItems value="#{productCategoryController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateProductsLabel_supplierCode}" for="supplierCode" />
+                    <h:selectOneMenu id="supplierCode" value="#{productsController.selected.supplierCode}" title="#{bundle.CreateProductsTitle_supplierCode}" >
+                        <f:selectItems value="#{suppliersController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{productsController.create}" value="#{bundle.CreateProductsSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{productsController.prepareList}" value="#{bundle.CreateProductsShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateProductsIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

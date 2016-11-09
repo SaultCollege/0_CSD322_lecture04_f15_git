@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.EditProductCategoryTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.EditProductCategoryLabel_productCatCode}" for="productCatCode" />
+                    <h:inputText id="productCatCode" value="#{productCategoryController.selected.productCatCode}" title="#{bundle.EditProductCategoryTitle_productCatCode}" required="true" requiredMessage="#{bundle.EditProductCategoryRequiredMessage_productCatCode}"/>
+                    <h:outputLabel value="#{bundle.EditProductCategoryLabel_productCatDesc}" for="productCatDesc" />
+                    <h:inputText id="productCatDesc" value="#{productCategoryController.selected.productCatDesc}" title="#{bundle.EditProductCategoryTitle_productCatDesc}" required="true" requiredMessage="#{bundle.EditProductCategoryRequiredMessage_productCatDesc}"/>
+                    <h:outputLabel value="#{bundle.EditProductCategoryLabel_products}" for="products" />
+                    <h:selectOneMenu id="products" value="#{productCategoryController.selected.products}" title="#{bundle.EditProductCategoryTitle_products}" >
+                        <f:selectItems value="#{productsController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <h:commandLink action="#{productCategoryController.update}" value="#{bundle.EditProductCategorySaveLink}"/>
+                <br />
+                <br />
+                <h:link outcome="View" value="#{bundle.EditProductCategoryViewLink}"/>
+                <br />
+                <h:commandLink action="#{productCategoryController.prepareList}" value="#{bundle.EditProductCategoryShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.EditProductCategoryIndexLink}" />
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
